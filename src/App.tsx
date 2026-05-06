@@ -382,9 +382,13 @@ export default function App() {
         const completed = completedPoints(kid);
         const required = requiredPoints(kid);
         const pointsRemaining = Math.max(0, required - completed);
-        const storedOverdue = kid.carryoverPoints + kid.dishPenaltyPoints;
+        const dishPenaltyRemaining =
+          kid.dishesLoadDone && kid.dishesUnloadDone
+            ? 0
+            : kid.dishPenaltyPoints;
         const pointsAppliedPastBase = Math.max(0, completed - BASE_POINTS);
-        const overduePoints = Math.max(0, storedOverdue - pointsAppliedPastBase);
+        const overduePoints = Math.max(0, kid.carryoverPoints - pointsAppliedPastBase) + dishPenaltyRemaining;
+        const storedOverdue = kid.carryoverPoints + dishPenaltyRemaining;
         const progress = required === 0 ? 100 : Math.min(100, Math.round((completed / required) * 100));
         const completionRate = kid.weeksTracked > 0 ? Math.round((kid.weeksSuccessful / kid.weeksTracked) * 100) : 0;
         return { ...kid, completedPoints: completed, requiredPoints: required, pointsRemaining, overduePoints, storedOverdue, progress, completionRate };
