@@ -711,3 +711,209 @@ button,input,select{
     grid-template-columns:1fr;
   }
 }
+
+
+/* HORIZONTAL TOUCHSCREEN MONITOR PATCH */
+
+@media screen and (orientation: landscape) and (max-height: 950px) {
+
+  body {
+    overflow: hidden;
+  }
+
+  .page {
+    height: 100vh;
+    overflow: hidden;
+    padding: 6px;
+  }
+
+  .shell {
+    height: 100vh;
+    gap: 5px;
+  }
+
+  .header-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .header-card {
+    min-height: 46px;
+    padding: 6px;
+  }
+
+  .headline {
+    font-size: 20px;
+  }
+
+  .header-value {
+    font-size: 15px;
+  }
+
+  .muted {
+    font-size: 10px;
+  }
+
+  .title-row {
+    min-height: 42px;
+  }
+
+  .app-title {
+    font-size: 26px;
+  }
+
+  .app-version {
+    font-size: 11px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  .summary-grid .card {
+    min-height: 50px;
+    padding: 6px;
+  }
+
+  .big-number {
+    font-size: 26px;
+  }
+
+  .dashboard {
+    grid-template-columns: 300px 1fr;
+    gap: 5px;
+    overflow: hidden;
+  }
+
+  .grocery-card {
+    height: 100%;
+    padding: 8px;
+  }
+
+  .grocery-form {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .grocery-form .button {
+    width: 100%;
+  }
+
+  .input {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .suggestion {
+    font-size: 13px;
+    padding: 7px 9px;
+  }
+
+  .grocery-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    overflow: auto;
+  }
+
+  .main-area {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 5px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .dog-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .mini-card {
+    padding: 7px;
+  }
+
+  .mini-title {
+    font-size: 11px;
+  }
+
+  .mini-status {
+    font-size: 16px;
+    margin: 2px 0;
+  }
+
+  .kids-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .kid-tile {
+    min-height: 0;
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .kid-name {
+    font-size: 21px;
+  }
+
+  .quote {
+    font-size: 11px;
+    line-height: 1.15;
+    min-height: 18px;
+  }
+
+  .pill {
+    font-size: 9px;
+    padding: 3px 7px;
+  }
+
+  .progress {
+    height: 6px;
+  }
+
+  .tile-metrics {
+    gap: 5px;
+  }
+
+  .metric {
+    padding: 7px;
+    font-size: 11px;
+  }
+
+  .metric strong {
+    font-size: 21px;
+  }
+
+  .tile-actions {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .button {
+    min-height: 42px;
+    font-size: 13px;
+    padding: 7px 9px;
+  }
+
+  .track {
+    min-height: 54px;
+    font-size: 18px;
+  }
+
+  .weather-main {
+    min-height: 42px;
+    font-size: 13px;
+    padding: 7px 10px;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+}
