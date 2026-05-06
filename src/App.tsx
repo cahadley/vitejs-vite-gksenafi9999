@@ -1199,7 +1199,7 @@ export default function App() {
           </div>
         </div>
       </div>
-    ); 
+    );
   }
 
   if (screen === "kid" && selectedKid) return KidScreen({ kid: selectedKid });
