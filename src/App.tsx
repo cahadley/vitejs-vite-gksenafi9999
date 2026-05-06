@@ -272,7 +272,7 @@ export default function App() {
   const [lastWeekKey, setLastWeekKey] = useState(initial.lastWeekKey);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setClock(new Date()), 1000);
+    const timer = window.setInterval(() => setClock(new Date()), 60 * 1000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -382,12 +382,9 @@ export default function App() {
         const completed = completedPoints(kid);
         const required = requiredPoints(kid);
         const pointsRemaining = Math.max(0, required - completed);
-        const dishPenaltyRemaining =
-          kid.dishesLoadDone && kid.dishesUnloadDone
-            ? 0
-            : kid.dishPenaltyPoints;
-        const overduePoints = Math.max(0, kid.carryoverPoints - completed) + dishPenaltyRemaining;
-        const storedOverdue = kid.carryoverPoints + dishPenaltyRemaining;
+        const storedOverdue = kid.carryoverPoints + kid.dishPenaltyPoints;
+        const pointsAppliedPastBase = Math.max(0, completed - BASE_POINTS);
+        const overduePoints = Math.max(0, storedOverdue - pointsAppliedPastBase);
         const progress = required === 0 ? 100 : Math.min(100, Math.round((completed / required) * 100));
         const completionRate = kid.weeksTracked > 0 ? Math.round((kid.weeksSuccessful / kid.weeksTracked) * 100) : 0;
         return { ...kid, completedPoints: completed, requiredPoints: required, pointsRemaining, overduePoints, storedOverdue, progress, completionRate };
@@ -786,6 +783,28 @@ export default function App() {
     );
   }
 
+
+  function SummaryPanel() {
+    const loadsDone = completionEvents.filter((event) => event.choreName === "load dishes").length;
+    const totalMarked = kids.reduce(
+      (sum, kid) => sum + kid.chores.reduce((s, chore) => s + chore.doneCount, 0) + kid.customChores.reduce((s, chore) => s + chore.doneCount, 0),
+      0
+    );
+
+    return (
+      <div className="sidebar-summary">
+        <div className="card sidebar-stat">
+          <div className="muted">Total chores marked</div>
+          <div className="big-number">{totalMarked}</div>
+        </div>
+        <div className="card sidebar-stat">
+          <div className="muted">Loads of dishes done</div>
+          <div className="big-number">{loadsDone}</div>
+        </div>
+      </div>
+    );
+  }
+
   function Metric(props: { label: string; value: number; danger?: boolean }) {
     return (
       <div className={`metric ${props.danger ? "metric-danger" : ""}`}>
@@ -852,12 +871,6 @@ export default function App() {
   }
 
   function HomeScreen() {
-    const loadsDone = completionEvents.filter((event) => event.choreName === "load dishes").length;
-    const totalMarked = kids.reduce(
-      (sum, kid) => sum + kid.chores.reduce((s, chore) => s + chore.doneCount, 0) + kid.customChores.reduce((s, chore) => s + chore.doneCount, 0),
-      0
-    );
-
     return (
       <div className="page">
         <div className="shell">
@@ -871,19 +884,12 @@ export default function App() {
             <button className="button" onClick={() => setScreen("parent")}>Parent Console</button>
           </div>
 
-          <div className="summary-grid">
-            <div className="card">
-              <div className="muted">Total chores marked</div>
-              <div className="big-number">{totalMarked}</div>
-            </div>
-            <div className="card">
-              <div className="muted">Loads of dishes done</div>
-              <div className="big-number">{loadsDone}</div>
-            </div>
-          </div>
-
           <div className="dashboard">
-            {GroceryPanel()}
+            <div className="left-column">
+              {SummaryPanel()}
+              {GroceryPanel()}
+            </div>
+
             <div className="main-area">
               {DogCard()}
               <div className="kids-grid">
