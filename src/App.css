@@ -986,7 +986,7 @@ button,input,select{
   .sidebar-summary{
     grid-template-columns:1fr 1fr;
     gap:4px;
-  }
+  } 
 
   .sidebar-stat{
     min-height:44px;

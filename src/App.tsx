@@ -1200,7 +1200,7 @@ export default function App() {
         </div>
       </div>
     );
-  }
+  } 
  
   if (screen === "kid" && selectedKid) return KidScreen({ kid: selectedKid });
   if (screen === "parent") return ParentScreen();
