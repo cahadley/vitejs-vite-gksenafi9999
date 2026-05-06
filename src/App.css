@@ -978,7 +978,7 @@ button,input,select{
   .left-column{
     gap:4px;
   }
-
+ 
   .sidebar-summary{
     grid-template-columns:1fr 1fr;
     gap:4px;
