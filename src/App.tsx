@@ -1196,7 +1196,7 @@ export default function App() {
                 ))}
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     );
@@ -1207,3 +1207,4 @@ export default function App() {
   if (screen === "reports") return ReportsScreen();
   return HomeScreen();
 }
+ 
