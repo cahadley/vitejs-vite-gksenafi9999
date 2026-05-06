@@ -714,9 +714,10 @@ button,input,select{
 
 
 /* =========================================================
-   v5.5.26 RELAYOUT PATCH - LANDSCAPE WALL MONITOR
-   Totals now live inside left column above Grocery List.
-   Dog Care compact. Kid grid gets the main available space.
+   v5.5.26 FINAL DASHBOARD LAYOUT
+   - Totals are narrow and inside the grocery/left column
+   - Dog Care is condensed and higher
+   - Kids are 3 across x 2 down in landscape so all buttons fit
    ========================================================= */
 
 .left-column{
@@ -731,18 +732,20 @@ button,input,select{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:6px;
+  width:100%;
 }
 
 .sidebar-stat{
-  min-height:58px;
+  min-width:0;
+  min-height:54px;
   padding:7px;
 }
 
-/* hide any legacy top summary if it exists */
 .shell > .summary-grid{
   display:none !important;
 }
 
+/* Landscape wall monitor / stick PC mode */
 @media screen and (orientation: landscape){
 
   body{
@@ -766,8 +769,8 @@ button,input,select{
   }
 
   .header-card{
-    min-height:46px;
-    padding:6px;
+    min-height:44px;
+    padding:5px 7px;
   }
 
   .headline{
@@ -783,7 +786,7 @@ button,input,select{
   }
 
   .title-row{
-    min-height:42px;
+    min-height:40px;
   }
 
   .app-title{
@@ -814,12 +817,16 @@ button,input,select{
   }
 
   .sidebar-stat{
-    min-height:58px;
-    padding:7px;
+    min-height:52px;
+    padding:6px;
+  }
+
+  .sidebar-stat .muted{
+    font-size:9px;
   }
 
   .big-number{
-    font-size:28px;
+    font-size:27px;
   }
 
   .grocery-card{
@@ -859,18 +866,18 @@ button,input,select{
   .main-area{
     display:grid;
     grid-template-rows:auto 1fr auto;
-    gap:6px;
+    gap:5px;
     min-height:0;
     overflow:hidden;
   }
 
   .dog-grid{
     grid-template-columns:1fr 1fr 1fr;
-    gap:5px;
+    gap:4px;
   }
 
   .dog-grid .mini-card{
-    padding:5px;
+    padding:4px 6px;
   }
 
   .dog-grid .mini-title{
@@ -883,15 +890,15 @@ button,input,select{
   }
 
   .dog-grid .button{
-    min-height:32px;
+    min-height:30px;
     font-size:11px;
     padding:4px 7px;
   }
 
   .kids-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(2,minmax(0,1fr));
     gap:6px;
     min-height:0;
     overflow:hidden;
@@ -899,28 +906,28 @@ button,input,select{
 
   .kid-tile{
     min-height:0;
-    padding:9px;
+    padding:8px;
     gap:5px;
     overflow:hidden;
   }
 
   .kid-name{
-    font-size:23px;
+    font-size:22px;
   }
 
   .quote{
-    font-size:11px;
-    line-height:1.15;
-    min-height:16px;
+    font-size:10px;
+    line-height:1.12;
+    min-height:14px;
   }
 
   .pill{
-    font-size:9px;
-    padding:3px 7px;
+    font-size:8px;
+    padding:2px 6px;
   }
 
   .progress{
-    height:6px;
+    height:5px;
   }
 
   .tile-metrics{
@@ -928,12 +935,12 @@ button,input,select{
   }
 
   .metric{
-    padding:7px;
-    font-size:11px;
+    padding:6px;
+    font-size:10px;
   }
 
   .metric strong{
-    font-size:21px;
+    font-size:20px;
   }
 
   .tile-actions{
@@ -942,19 +949,19 @@ button,input,select{
   }
 
   .button{
-    min-height:38px;
+    min-height:36px;
     font-size:12px;
-    padding:6px 8px;
+    padding:5px 7px;
   }
 
   .track{
-    min-height:48px;
-    font-size:18px;
+    min-height:46px;
+    font-size:17px;
     flex:0 0 auto;
   }
 
   .weather-main{
-    min-height:42px;
+    min-height:40px;
     font-size:13px;
     padding:7px 10px;
   }
@@ -962,5 +969,23 @@ button,input,select{
   .section-title{
     font-size:14px;
     margin-bottom:4px;
+  }
+}
+
+/* Portrait support remains available */
+@media screen and (max-aspect-ratio: 3/4){
+
+  .left-column{
+    gap:4px;
+  }
+
+  .sidebar-summary{
+    grid-template-columns:1fr 1fr;
+    gap:4px;
+  }
+
+  .sidebar-stat{
+    min-height:44px;
+    padding:5px;
   }
 }

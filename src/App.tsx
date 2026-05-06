@@ -272,7 +272,7 @@ export default function App() {
   const [lastWeekKey, setLastWeekKey] = useState(initial.lastWeekKey);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setClock(new Date()), 60 * 1000);
+    const timer = window.setInterval(() => setClock(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -382,9 +382,12 @@ export default function App() {
         const completed = completedPoints(kid);
         const required = requiredPoints(kid);
         const pointsRemaining = Math.max(0, required - completed);
-        const storedOverdue = kid.carryoverPoints + kid.dishPenaltyPoints;
-        const pointsAppliedPastBase = Math.max(0, completed - BASE_POINTS);
-        const overduePoints = Math.max(0, storedOverdue - pointsAppliedPastBase);
+        const dishPenaltyRemaining =
+          kid.dishesLoadDone && kid.dishesUnloadDone
+            ? 0
+            : kid.dishPenaltyPoints;
+        const overduePoints = Math.max(0, kid.carryoverPoints - completed) + dishPenaltyRemaining;
+        const storedOverdue = kid.carryoverPoints + dishPenaltyRemaining;
         const progress = required === 0 ? 100 : Math.min(100, Math.round((completed / required) * 100));
         const completionRate = kid.weeksTracked > 0 ? Math.round((kid.weeksSuccessful / kid.weeksTracked) * 100) : 0;
         return { ...kid, completedPoints: completed, requiredPoints: required, pointsRemaining, overduePoints, storedOverdue, progress, completionRate };
