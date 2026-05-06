@@ -30,7 +30,9 @@ button,input,select{
   font-family:Arial,Helvetica,sans-serif;
 }
 
-.scroll-page{overflow:auto}
+.scroll-page{
+  overflow:auto;
+}
 
 .shell{
   width:100%;
@@ -156,7 +158,9 @@ button,input,select{
   border-color:#f87171;
 }
 
-.mini-title{font-size:13px}
+.mini-title{
+  font-size:13px;
+}
 
 .mini-status{
   font-size:18px;
@@ -236,6 +240,10 @@ button,input,select{
   gap:6px;
 }
 
+.kid-summary{
+  grid-template-columns:repeat(4,1fr);
+}
+
 .metric{
   text-align:center;
   font-weight:900;
@@ -243,6 +251,11 @@ button,input,select{
 
 .metric strong{
   font-size:20px;
+}
+
+.metric-danger{
+  background:#7f1d1d;
+  border-color:#f87171;
 }
 
 .tile-actions{
@@ -265,6 +278,31 @@ button,input,select{
 
 .button:active{
   transform:scale(.98);
+}
+
+.button.full{
+  width:100%;
+}
+
+.button.secondary{
+  background:#475569;
+}
+
+.button.success{
+  background:#059669;
+}
+
+.button.danger{
+  background:#dc2626;
+}
+
+.button.disabled{
+  background:#64748b;
+}
+
+.button.small{
+  min-height:36px;
+  padding:6px 9px;
 }
 
 .track{
@@ -320,6 +358,26 @@ button,input,select{
   font-size:12px;
 }
 
+.suggestion.active{
+  background:#2563eb;
+}
+
+.grocery-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  align-content:start;
+  overflow:auto;
+}
+
+.grocery-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:6px;
+  min-height:34px;
+}
+
 .weather-main{
   background:#020617;
   border:1px solid #334155;
@@ -330,6 +388,108 @@ button,input,select{
   min-height:54px;
   display:flex;
   align-items:center;
+}
+
+.chore-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.chore-tile{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:130px;
+  color:white;
+  text-align:left;
+}
+
+.chore-done{
+  background:#064e3b;
+  border-color:#22c55e;
+}
+
+.chore-name{
+  font-size:18px;
+  font-weight:900;
+}
+
+.parent-content{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.parent-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.form-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.form-row.wrap{
+  flex-wrap:wrap;
+}
+
+.form-column{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.library-list,.parent-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-height:420px;
+  overflow:auto;
+}
+
+.library-row{
+  display:grid;
+  grid-template-columns:1.3fr 90px 130px auto auto auto;
+  gap:8px;
+  align-items:center;
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:12px;
+  padding:8px;
+}
+
+.library-row.simple{
+  grid-template-columns:1fr auto;
+}
+
+.small-input{
+  max-width:90px;
+}
+
+.message{
+  color:#facc15;
+  margin-top:8px;
+}
+
+.pin-card{
+  max-width:520px;
+}
+
+.report-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.report-item{
+  border-top:1px solid #334155;
+  padding-top:8px;
+  margin-top:8px;
 }
 
 /* PORTRAIT MONITOR MODE */
@@ -405,19 +565,52 @@ button,input,select{
   }
 
   .grocery-card{
-    min-height:145px;
-    max-height:145px;
+    min-height:190px;
+    max-height:190px;
     padding:5px;
   }
 
+  .grocery-form{
+    gap:4px;
+    margin-bottom:4px;
+  }
+
   .input{
-    font-size:11px;
-    padding:6px;
+    font-size:14px;
+    padding:10px;
   }
 
   .suggestion{
-    font-size:10px;
+    font-size:12px;
+    padding:6px 8px;
+  }
+
+  .grocery-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    overflow:auto;
+    align-content:start;
+  }
+
+  .grocery-row{
+    min-height:30px;
     padding:4px 6px;
+  }
+
+  .grocery-row strong{
+    font-size:11px;
+  }
+
+  .grocery-row .tiny{
+    display:none;
+  }
+
+  .grocery-row .button{
+    min-height:24px;
+    font-size:9px;
+    padding:3px 5px;
+    border-radius:8px;
   }
 
   .dog-grid{
@@ -488,6 +681,12 @@ button,input,select{
     padding:4px 6px;
   }
 
+  .button.small{
+    min-height:24px;
+    font-size:9px;
+    padding:3px 5px;
+  }
+
   .track{
     min-height:42px;
     font-size:15px;
@@ -497,5 +696,18 @@ button,input,select{
     min-height:54px;
     font-size:11px;
     padding:6px 8px;
+  }
+
+  .section-title{
+    font-size:12px;
+    margin-bottom:4px;
+  }
+
+  .library-row{
+    grid-template-columns:1fr;
+  }
+
+  .parent-grid,.report-grid{
+    grid-template-columns:1fr;
   }
 }
